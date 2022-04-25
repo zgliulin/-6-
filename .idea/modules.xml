@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/作业笔记/1.设计模式/1.设计模式.iml" filepath="$PROJECT_DIR$/作业笔记/1.设计模式/1.设计模式.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/gupao-6th-study.iml" filepath="$PROJECT_DIR$/.idea/gupao-6th-study.iml" />
+      <module fileurl="file://$PROJECT_DIR$/作业笔记/1.设计模式/proxy/proxy.iml" filepath="$PROJECT_DIR$/作业笔记/1.设计模式/proxy/proxy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/作业笔记/作业笔记.iml" filepath="$PROJECT_DIR$/作业笔记/作业笔记.iml" />
+    </modules>
+  </component>
+</project>

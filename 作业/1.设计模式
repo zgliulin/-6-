@@ -1,0 +1,83 @@
+1.设计模式的初衷是什么？有哪些设计原则？
+设计模式的初衷是为了可重用代码、让代码更容易被他人理解、保证代码可靠性、程序的重用性。
+设计原则：
+    1.
+    2.
+    3.
+    4.
+    5.
+    6.
+    7.
+
+2.列举至少4种单例模式被破坏的场景，并给出解决方案。
+1) 多线程破坏懒汉式单例
+demo:略
+解决方案：加锁
+        public static LazzyDoubleCheckSingleton getInstance() {
+            // 检查是否要阻塞
+            if (hungrysigleton == null) {
+                synchronized (LazzyDoubleCheckSingleton.class) {
+                    // 检查是否要重新创建实例
+                    if (hungrysigleton == null) {
+                        hungrysigleton = new LazzyDoubleCheckSingleton();
+                    }
+                }
+            }
+            return hungrysigleton;
+        }
+2).反射破坏懒汉式静态内部类单例
+        Class<?> clazz = LazzyStaticInnerSingleton.class;
+        Constructor<?> c = clazz.getDeclaredConstructor(null);
+        c.setAccessible(true);
+        Object instance1 = c.newInstance();
+        Object instance2 = c.newInstance();
+        System.out.println(instance1 == instance2); -- false
+解决方案：构造方法中加校验
+        private LazzyStaticInnerSingleton() {
+            if (LazyHolder.INSTANCE != null) {
+              throw new RuntimeException("不允许非法访问");
+            }
+        }
+3) 通过序列化破坏饿汉式单例
+        SeriableSingleton s1 = null;
+        SeriableSingleton s2 = SeriableSingleton.getInstance();
+
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream("SeriableSingleton.obj");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(s2);
+            oos.flush();
+            oos.close();
+
+            FileInputStream fis = new FileInputStream("SeriableSingleton.obj");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            s1 = (SeriableSingleton) ois.readObject();
+            ois.close();
+
+            System.out.println(s1 == s2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+解决方案：对象中增加readResolve方法
+        private Object readResolve() {
+            return INSTANCE;
+        }
+
+4) 克隆的方式创建对象破坏单例
+        //创建原型对象
+        ConcretePrototype prototype = ConcretePrototype.getInstance();
+        //复制原型对象
+        ConcretePrototype cloneType = prototype.clone();
+        System.out.println(prototype == cloneType); // false
+解决方案：重写clone方法
+        @Override
+        public ConcretePrototype clone() {
+            return instance;
+        }
+
+3.一句话总结单例模式、原型模式、建造者模式和责任链模式。
+单例模式：永远只有一个对象。
+原型模式：复制对象。
+建造者模式：你提供零件，我负责组装。
+责任链模式：
