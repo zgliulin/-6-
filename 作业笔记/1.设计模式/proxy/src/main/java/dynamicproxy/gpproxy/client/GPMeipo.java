@@ -1,8 +1,11 @@
-package dynamicproxy.jdkproxy;
+package dynamicproxy.gpproxy.client;
 
-import java.lang.reflect.InvocationHandler;
+
+import dynamicproxy.gpproxy.proxy.GPClassLoader;
+import dynamicproxy.gpproxy.proxy.GPInvocationHandler;
+import dynamicproxy.gpproxy.proxy.GPProxy;
+
 import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
 
 /**
  * Description:
@@ -10,12 +13,12 @@ import java.lang.reflect.Proxy;
  * @author LiuLin
  * @date Created on 2022/4/24
  */
-public class JkdMeipo implements InvocationHandler {
+public class GPMeipo implements GPInvocationHandler {
     private IPerson target;
     public IPerson getInstance(IPerson target) {
         this.target = target;
         Class<?> clazz = target.getClass();
-        return (IPerson) Proxy.newProxyInstance(clazz.getClassLoader(), clazz.getInterfaces(),this);
+        return (IPerson) GPProxy.newProxyInstance(new GPClassLoader(), clazz.getInterfaces(),this);
     }
 
     @Override

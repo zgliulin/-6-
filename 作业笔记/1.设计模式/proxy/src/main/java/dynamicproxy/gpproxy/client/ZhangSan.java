@@ -1,4 +1,5 @@
-package dynamicproxy.jdkproxy;
+package dynamicproxy.gpproxy.client;
+
 
 /**
  * Description:
