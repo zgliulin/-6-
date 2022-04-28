@@ -7,11 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="proxy" />
+        <module name="2.性能调优" />
         <module name="1.设计模式" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="1.设计模式" target="8" />
+      <module name="2.性能调优" target="8" />
       <module name="proxy" target="8" />
       <module name="作业" target="8" />
       <module name="作业笔记" target="8" />
